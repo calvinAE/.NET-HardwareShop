@@ -1,0 +1,68 @@
+﻿@model PaginatedList<HardwareShop.Models.ProductCategory>
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (SignInManager.IsSignedIn(User))
+{
+    if (User.IsInRole("admin"))
+    {
+        <p>
+
+            <a asp-action="Create">Create New</a>
+
+        </p>
+    }
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+
+                    <a asp-action="Edit" style="box-shadow: inset 0px 1px 0px 0px #bbdaf7; background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%); background-color: #79bbff; border-radius: 6px; border: 1px solid #84bbf3; display: inline-block; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 15px; font-weight: bold; padding: 6px 24px; text-decoration: none; text-shadow: 0px 1px 0px #528ecc;" asp-route-id="@item.CategoryID">Edit</a>
+                    <a asp-action="Details" style=" box-shadow: inset 0px 1px 0px 0px #ffffff; background: linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%); background-color: #ededed; border-radius: 6px; border: 1px solid #dcdcdc; display: inline-block; cursor: pointer; color: #777777; font-family: Arial; font-size: 15px; font-weight: bold; padding: 6px 14px; text-decoration: none; text-shadow: 0px 1px 0px #ffffff;" asp-route-id="@item.CategoryID">Details</a>
+                    <a asp-action="Delete" style="box-shadow: inset 0px 1px 0px 0px #f29c93; background: linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%); background-color: #fe1a00; border-radius: 6px; border: 1px solid #d83526; display: inline-block; cursor: pointer; color: #ffffff; font-family: Arial; font-size: 15px; font-weight: bold; padding: 6px 15px; text-decoration: none; text-shadow: 0px 1px 0px #b23e35;" asp-route-id="@item.CategoryID">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

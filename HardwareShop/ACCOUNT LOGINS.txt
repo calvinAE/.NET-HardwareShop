@@ -1,0 +1,17 @@
+Admin account:
+
+- admin@admin
+
+- Admin123!
+
+Klant account:
+
+- klant@klant
+
+- Klant123!
+
+Leverancier account:
+
+- leverancier@leverancier
+
+- Leverancier123!

@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - HardwareShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand navbar-toggleable-sm navbar-dark bg-primary text-wrap; border-bottom box-shadow mb-3  ">
+            <div class="container">
+                <a class="navbar-brand" style="background-color:transparent" asp-area="" asp-controller="Home" asp-action="Index">Hardware Shop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between " >
+                    <ul class="navbar-nav flex-grow-1">
+
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Localizer["Products"]
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:dodgerblue">
+                                <a class="dropdown-item" asp-action="Create" asp-controller="Products" style="color:black;">@Localizer["Create"]</a>
+                                <a class="dropdown-item" asp-action="Index" asp-controller="Products" style="color:black;">@Localizer["All products"]</a>
+                            </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @Localizer["Categories"]
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="background-color:dodgerblue">
+                                <a class="dropdown-item" asp-action="Create" asp-controller="ProductCategories" style="color:black;">@Localizer["Create"]</a>
+                                <a class="dropdown-item" asp-action="Index" asp-controller="ProductCategories" style="color:black;">@Localizer["All categories"]</a>
+                            </div>
+
+                        <li class="nav-item" >
+                            <a  class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Computers">@Localizer["Computers"]</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Maps">@Localizer["About"]</a>
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                    <partial name="_LanguagePartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
+        <div class="container" >
+            <a style="color:white; text-align:center;">    &copy; 2021 - HardwareShop - <a style="color:white;" asp-area="" asp-controller="Home" asp-action="Maps">Contact us</a> </a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

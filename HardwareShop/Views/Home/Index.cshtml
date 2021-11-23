@@ -1,0 +1,13 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+ 
+@{
+    ViewData["Title"] = @Localizer["Home Page"];
+}
+
+<div class="text-center">
+   <h1>@Localizer["Welcome to Calvin's hardware shop"]</h1>
+
+    <img style="padding-top:2em" src="../Images/logo.png" />
+</div>
